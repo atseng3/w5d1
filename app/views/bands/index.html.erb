@@ -1,0 +1,5 @@
+<h1>Welcome to Music App!!</h1>
+<h2>List of all bands in DB</h2>
+<% @bands.each do |band| %>
+	<%= link_to band.name, band_url(band) %>
+<% end %>

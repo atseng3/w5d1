@@ -1,0 +1,10 @@
+<h1><%= @band.name.capitalize %></h1>
+<h2>Albums</h2>
+
+<% unless @band.albums.empty? %>
+	<% @band.albums.each do |album| %>
+		<%= link_to "#{album.title}", album_tracks_url(album.id) %>
+	<% end %>
+<% end %>
+
+Delete:<%= button_to "Delete Band", band_url(@band), :method => :delete %>

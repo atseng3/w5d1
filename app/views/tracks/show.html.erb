@@ -1,0 +1,33 @@
+<h1><%= @track.name %></h1>
+Album: <%= link_to "#{@track.album.title}", album_url(@track.album.id) %><br>
+
+Type: <%= @track.type %><br>
+<h2>Lyrics</h2><br>
+<pre>
+<%= @track.lyrics %>
+</pre>
+
+<h3>Notes(<%= @track.notes.count %>)</h3>
+<% unless @track.notes.empty? %>
+	<% @track.notes.each do |note| %>
+	Note <%= note.id %>:
+		<%= note.body %>
+		<%= button_to "Delete Note", note_url(note), :method => :delete %>
+	<% end %>
+<% end %>
+
+<%= flash.now[:errors] %>
+
+<form action="<%= track_notes_url(@track.id) %>" method="post" accept-charset="utf-8">
+<input type="hidden"
+			 name="authenticity_token"
+			 value="<%= form_authenticity_token %>">
+		
+<label for="notes">Add New Note</label><br>
+<textarea rows="10" cols="30" name="note[body]" id="notes"></textarea>
+
+	<p><input type="submit" value="Continue &rarr;"></p>
+</form>
+
+
+Delete:<%= button_to "Delete Track", track_url(@track), :method => :delete %>

@@ -1,0 +1,13 @@
+<h1>Add a Band!!</h1>
+<%= flash.now[:errors] %>
+
+<form action="<%= bands_url %>" method="post" accept-charset="utf-8">
+	
+<input type="hidden"
+			 name="authenticity_token"
+			 value="<%= form_authenticity_token %>">
+			 
+			 <label for="band">Band</label><input type="text" name="band[name]" value="" id="band">
+			 
+	<p><input type="submit" value="Continue &rarr;"></p>
+</form>

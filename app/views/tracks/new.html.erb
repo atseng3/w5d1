@@ -1,0 +1,31 @@
+<h1>Add a Track!</h1>
+<%= flash.now[:errors] %>
+
+<form action="<%= album_tracks_url(@album) %>" method="post" accept-charset="utf-8">
+	
+<input type="hidden"
+			 name="authenticity_token"
+			 value="<%= form_authenticity_token %>">
+			 
+<label for="name">Name</label><input type="text" name="track[name]" value="" id="name">
+
+<input type="hidden" name="track[album_id]" value="<%= @album.id %>" id="track[album_id]">
+
+<select name="track[album_id]" id="track[album_id]" size="1">
+	<% Album.all.each do |album| %>
+		<option value="<%= album.id %>"><%= album.title %></option>
+	<% end %>
+</select>
+
+<label for="regular">Regular</label>
+<input type="radio" name="track[type]" value="regular" id="regular">
+
+<label for="bonus">Bonus</label>
+<input type="radio" name="track[type]" value="bonus" id="bonus"><br>
+
+<label for="lyrics">Lyrics</label><br><textarea rows="10" cols="30" name="track[lyrics]" id="lyrics"></textarea>
+
+			 
+			 
+	<p><input type="submit" value="Continue &rarr;"></p>
+</form>
